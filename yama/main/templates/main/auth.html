@@ -1,0 +1,25 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}Вход{% endblock %}
+
+{% block base %}
+    <div class="container my-5 mx-auto">
+        <form method="post">
+            <div class="mb-3 justify-content-center">
+                <label for="login" class="form-label fs-3">Введите логин</label>
+                <input type="text" class="form-control w-50 fs-5" id="login" placeholder="Логин">
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label fs-3">Введите пароль</label>
+                <input type="password" class="form-control w-50 fs-5" id="password" placeholder="Пароль">
+            </div>
+            <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" id="remember">
+                <label class="form-check-label fs-4" for="remember">Запомнить меня</label>
+            </div>
+            <button type="submit" class="btn btn-primary fs-4">Войти</button>
+        </form>
+        <p class="fs-5 my-4"><a href="{% url 'registration' %}" class="registertext">Еще не зарегистрировались?</a></p>
+    </div>
+
+{% endblock %}

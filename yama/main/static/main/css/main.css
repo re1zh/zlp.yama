@@ -1,0 +1,31 @@
+body {
+    background-color: #16163a;
+    color: white;
+}
+
+.bg-header {
+    background-color: #171757
+}
+
+header img{
+    width: 80px;
+    margin-right: 20px;
+}
+
+header li {
+    margin-right: 10px;
+}
+
+.btn-custom {
+    background-color: #4A40F7;
+    color: #FFFFFF;
+}
+
+.btn-custom:hover {
+    background-color: #3A30D7;
+}
+
+.titlename:hover {
+    color: rgba(255, 255, 255, 0.52);
+    transition: .2s ease;
+}

@@ -1,0 +1,29 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}Регистрация{% endblock %}
+
+{% block base %}
+    <div class="container my-5 mx-auto">
+        <form method="post">
+            <div class="mb-3 justify-content-center">
+                <label for="login" class="form-label fs-3">Введите логин</label>
+                <input type="text" class="form-control w-50 fs-5" id="login" placeholder="Логин">
+            </div>
+            <div class="mb-3 justify-content-center">
+                <label for="login" class="form-label fs-3">Введите фамилию и имя</label>
+                <input type="text" class="form-control w-50 fs-5" id="name_lastname" placeholder="Логин">
+            </div>
+            <div class="mb-3 justify-content-center">
+                <label for="login" class="form-label fs-3">Введите почту</label>
+                <input type="text" class="form-control w-50 fs-5" id="email" placeholder="Логин">
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label fs-3">Введите пароль</label>
+                <input type="password" class="form-control w-50 fs-5" id="password" placeholder="Пароль">
+            </div>
+            <button type="submit" class="btn btn-primary fs-4">Зарегистрироваться</button>
+        </form>
+        <p class="fs-5 my-4"><a href="{% url 'auth' %}" class="registertext">Уже есть аккаунт?</a></p>
+    </div>
+
+{% endblock %}

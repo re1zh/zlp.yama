@@ -1,0 +1,9 @@
+.registertext {
+    text-decoration: none;
+    color: #FFFFFF;
+}
+
+.registertext:hover {
+    color: rgba(255, 255, 255, 0.52);
+    transition: .2s ease;
+}
