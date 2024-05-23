@@ -1,4 +1,4 @@
-{% extends 'main/layout.html' %}
+{% extends 'layout.html' %}
 
 {% block title %}Главная страница{% endblock %}
 
@@ -10,7 +10,7 @@
                 <h1>Избавьтесь от долгов навсегда</h1>
                 <p class="lead">Сделайте это легко и весело с Долговой Ямой</p>
                 <div>
-                    <a href="{% url 'auth' %}" class="btn btn-custom btn-lg me-2">Начать</a>
+                    <a href="/accounts/registration" class="btn btn-custom btn-lg me-2">Начать</a>
                     <a href="{% url 'about' %}" class="btn btn-outline-light btn-lg">Узнать больше</a>
                 </div>
             </div>

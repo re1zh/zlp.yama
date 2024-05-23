@@ -1,10 +1,11 @@
-{% extends 'main/layout.html' %}
+{% extends 'layout.html' %}
 
 {% block title %}Вход{% endblock %}
 
 {% block base %}
     <div class="container my-5 mx-auto">
-        <form method="post">
+        <form method="post" action="/accounts/login/">
+            {% csrf_token %}
             <div class="mb-3 justify-content-center">
                 <label for="login" class="form-label fs-3">Введите логин</label>
                 <input type="text" class="form-control w-50 fs-5" id="login" placeholder="Логин">
@@ -19,7 +20,7 @@
             </div>
             <button type="submit" class="btn btn-primary fs-4">Войти</button>
         </form>
-        <p class="fs-5 my-4"><a href="{% url 'registration' %}" class="registertext">Еще не зарегистрировались?</a></p>
+        <p class="fs-5 my-4"><a href="/accounts/registration" class="registertext">Еще не зарегистрировались?</a></p>
     </div>
 
 {% endblock %}
