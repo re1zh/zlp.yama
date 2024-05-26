@@ -20,17 +20,17 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link fs-5" href="{% url 'home' %}">Главная страница</a>
-                    </li>
+{#                    <li class="nav-item">#}
+{#                        <a class="nav-link fs-5" href="{% url 'home' %}">Главная страница</a>#}
+{#                    </li>#}
                     <li class="nav-item">
                         <a class="nav-link fs-5" href="{% url 'about' %}">О проекте</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link btn btn-custom fs-5" href="/accounts/login">Войти</a>
+                        <a class="nav-link btn btn-custom fs-5" href="{% url 'login' %}">Войти</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link btn btn-custom ms-2 fs-5" href="/accounts/registration">Регистрация</a>
+                        <a class="nav-link btn btn-custom ms-2 fs-5" href="{% url 'registration' %}">Регистрация</a>
                     </li>
                 </ul>
             </div>
