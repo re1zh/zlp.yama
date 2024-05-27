@@ -3,17 +3,33 @@
 {% block title %}Главная страница{% endblock %}
 
 {% block base %}
-    <div class="container text-center my-5">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <img src="static/main/img/main.png" alt="Главное изображение" class="img-fluid rounded-pill mb-4">
-                <h1>Избавьтесь от долгов навсегда</h1>
-                <p class="lead">Сделайте это легко и весело с Долговой Ямой</p>
-                <div>
-                    <a href="{% url 'registration' %}" class="btn btn-custom btn-lg me-2">Начать</a>
-                    <a href="{% url 'about' %}" class="btn btn-outline-light btn-lg">Узнать больше</a>
+    {% if not user.is_authenticated %}
+        <div class="container text-center my-5">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <img src="static/main/img/main.png" alt="Главное изображение" class="img-fluid rounded-pill mb-4">
+                    <h1>Избавьтесь от долгов навсегда</h1>
+                    <p class="lead">Сделайте это легко и весело с Долговой Ямой</p>
+                    <div>
+                        <a href="{% url 'registration' %}" class="btn btn-custom btn-lg me-2">Начать</a>
+                        <a href="{% url 'about' %}" class="btn btn-outline-light btn-lg">Узнать больше</a>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    {% else %}
+        <div class="container text-center my-5">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <img src="static/main/img/main.png" alt="Главное изображение" class="img-fluid rounded-pill mb-4">
+                    <h1>Добро пожаловать, {{ user.username }}</h1>
+                    <p class="lead">Вы успешно авторизовались</p>
+                    <div>
+                        <a href="{% url 'home' %}" class="btn btn-custom btn-lg me-2">Профиль</a>
+                        <a href="{% url 'logout' %}" class="btn btn-outline-light btn-lg">Выйти</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
 {% endblock %}
