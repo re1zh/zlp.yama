@@ -1,0 +1,36 @@
+{% extends 'layout.html' %}
+
+{% block title %}Добавление долга{% endblock %}
+
+{% block base %}
+    <div class="container text-center my-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <h1>Добавление долга</h1>
+                <form action="{% url 'debt_create' %}" method="POST">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="debtor" class="form-label">Должник</label>
+                        <input type="text" class="form-control" id="debtor" name="debtor" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="amount" class="form-label">Сумма</label>
+                        <input type="number" class="form-control" id="amount" name="amount" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="date" class="form-label">Дата</label>
+                        <input type="date" class="form-control" id="date" name="date" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="status" class="form-label">Статус</label>
+                        <select class="form-select" id="status" name="status" required>
+                            <option value="Не оплачено">Не оплачено</option>
+                            <option value="Оплачено">Оплачено</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-custom btn-lg">Добавить</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

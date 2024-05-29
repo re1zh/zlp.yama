@@ -21,12 +21,49 @@
         <div class="container text-center my-5">
             <div class="row justify-content-center">
                 <div class="col-md-8">
-                    <img src="static/main/img/main.png" alt="Главное изображение" class="img-fluid rounded-pill mb-4">
-                    <h1>Добро пожаловать, {{ user.username }}</h1>
-                    <p class="lead">Вы успешно авторизовались</p>
-                    <div>
-                        <a href="{% url 'home' %}" class="btn btn-custom btn-lg me-2">Профиль</a>
-                        <a href="{% url 'logout' %}" class="btn btn-outline-light btn-lg">Выйти</a>
+                    <div class="mb-4">
+                        {% if debts %}
+                            <h1>Ваши долги</h1>
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th scope="col">Имя</th>
+                                    <th scope="col">Сумма</th>
+                                    <th scope="col">Дата</th>
+                                    <th scope="col">Статус</th>
+                                    <th scope="col"></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for debt in debts %}
+                                    <tr>
+                                        <td>{{ debt.debtor }}</td>
+                                        <td>{{ debt.amount }}</td>
+                                        <td>{{ debt.date_due }}</td>
+                                        {% if debt.is_confirmed %}
+                                            <td>Оплачено</td>
+                                        {% else %}
+                                            <td>Не оплачено</td>
+                                        {% endif %}
+                                        <td>
+                                            <form action="{% url 'debt_delete' debt.id %}" method="POST">
+                                                {% csrf_token %}
+                                                <button class="btn btn-danger btn-sm">Удалить</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                            <a href="{% url 'debt_create' %}" class="btn btn-custom">Добавить долг</a>
+                        {% else %}
+                            <div class="mb-4">
+                                <h1>У вас нет долговых записей!</h1>
+                            </div>
+                            <div class="mb-4">
+                                <a href="{% url 'debt_create' %}" class="btn btn-custom btn-lg">Добавить долг</a>
+                            </div>
+                        {% endif %}
                     </div>
                 </div>
             </div>
