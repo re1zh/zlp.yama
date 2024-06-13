@@ -15,7 +15,8 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-header">
         <div class="container-fluid">
             <img src="{% static 'main/img/logo2.svg' %}" alt="Логотип">
-            <a class="navbar-brand fw-bold fs-1 titlename" href="{% url 'home' %}">ZLP.Yama</a>
+            <a class="navbar-brand fw-bold fs-1 titlename"
+               href="{% if user.is_superuser %}/admin{% else %}{% url 'home' %}{% endif %}">ZLP.Yama</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
