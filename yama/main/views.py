@@ -1,9 +1,10 @@
 from django.conf import settings
 from django.contrib.auth.models import User
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, FileResponse
 from django.shortcuts import render
 
-from .models import Debt
+from .backends import generate_report
+from .models import Debt, Report
 
 
 def index(request):
@@ -61,5 +62,35 @@ def debt_delete(request, debt_id):
         debt = Debt.objects.get(id=debt_id)
         debt.delete()
         return HttpResponseRedirect('/')
+    else:
+        return HttpResponse(f'Method {request.method} not allowed', status=405)
+
+
+def reports_list(request):
+    if request.method == 'GET':
+        return render(
+            request,
+            'reports_list.html',
+            {'reports': request.user.reports.all().order_by('-date_created')}
+        )
+    else:
+        return HttpResponse(f'Method {request.method} not allowed', status=405)
+
+
+def report_generate(request):
+    if request.method == 'GET':
+        new_report = generate_report(request.user)
+        new_report.save()
+        return HttpResponseRedirect('/report_download/' + str(new_report.id))
+    else:
+        return HttpResponse(f'Method {request.method} not allowed', status=405)
+
+
+def report_download(request, report_id):
+    if request.method == 'GET':
+        report = Report.objects.get(id=report_id)
+        response = FileResponse(open(settings.REPORTS_DIR / report.file_name, 'rb'))
+        response['Content-Disposition'] = f'attachment; filename="{report.file_name}"'
+        return response
     else:
         return HttpResponse(f'Method {request.method} not allowed', status=405)

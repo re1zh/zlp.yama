@@ -37,6 +37,12 @@
                         </li>
                     {% else %}
                         <li class="nav-item">
+                            <a class="nav-link fs-5" href="{% url 'home' %}">Долги</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link fs-5" href="{% url 'reports_list' %}">Отчёты</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link fs-5" href="{% url 'home' %}">Профиль</a>
                         </li>
                         {#                        <li class="nav-item">#}

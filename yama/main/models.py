@@ -14,3 +14,12 @@ class Debt(models.Model):
 
     def __str__(self):
         return f'{self.debtor} owes {self.amount} to {self.creditor}'
+
+
+class Report(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='reports')
+    date_created = models.DateTimeField(auto_now_add=True)
+    file_name = models.CharField(max_length=255)
+
+    def __str__(self):
+        return f'Report for {self.user} created on {self.date_created}'

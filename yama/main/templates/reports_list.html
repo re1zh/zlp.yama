@@ -1,0 +1,43 @@
+{% extends 'layout.html' %}
+
+{% block title %}Отчет{% endblock %}
+
+{% block base %}
+    <div class="container text-center my-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                {% if reports %}
+                    <h1>Список отчётов</h1>
+                    <a href="{% url 'report_generate' %}" class="btn btn-custom">Сгенерировать отчёт</a>
+                    <div class="my-4">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th scope="col">Дата</th>
+                                <th scope="col"></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for report in reports %}
+                                <tr>
+                                    <td>{{ report.date_created }}</td>
+                                    <td>
+                                        <a href="{% url 'report_download' report.id %}"
+                                           class="btn btn-custom">Скачать</a>
+                                    </td>
+
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                {% else %}
+                    <div class="mb-4">
+                        <h1>У Вас пока нет отчётов!</h1>
+                        <a href="{% url 'report_generate' %}" class="btn btn-custom">Сгенерировать отчёт</a>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
